@@ -22,7 +22,7 @@ int main(int argc, char** argv)
         }
     }
 */  
-    Bar bar = [&](){
+    const Bar bar = [&](){
         if (auto sp = wp.lock(); sp) return sp->bar;
         return Bar{};
     }();
