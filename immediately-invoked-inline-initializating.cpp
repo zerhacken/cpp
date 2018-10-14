@@ -1,3 +1,4 @@
+// cl.exe immediately-invoked-inline-initializating.cpp /std:c++17
 #include <memory>
 
 using namespace std;
@@ -11,10 +12,6 @@ struct Foo
 int main(int argc, char** argv)
 {
 	weak_ptr<Foo> wp;
-  	Bar bar = [&](){
-      if (auto sp = wp.lock(); sp) return sp->bar;
-      return Bar{};
-    }();
 /*  
   	Bar bar;
     {
@@ -25,5 +22,10 @@ int main(int argc, char** argv)
         }
     }
 */  
+    Bar bar = [&](){
+        if (auto sp = wp.lock(); sp) return sp->bar;
+        return Bar{};
+    }();
+    
     return 0;
 }
