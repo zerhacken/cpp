@@ -23,6 +23,7 @@ int main(int argc, char** argv)
     }
 */  
     const Bar bar = [&](){
+        // P0305R1 aka if (init; condition)
         if (auto sp = wp.lock(); sp) return sp->bar;
         return Bar{};
     }();
