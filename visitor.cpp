@@ -1,19 +1,14 @@
-﻿#include <variant>
+// cl.exe visitor.cpp /std:c++17
+#include <variant>
 #include <array>
 #include <vector>
 
 struct Visitor {
-    void operator() (int i)
-    {
-
-    }
-    void operator() (float f)
-    {
-
-    }
+    void operator() (int i) {}
+    void operator() (float f){}
 };
 
-int main() {
+int main(int argc, char** argv) {
     {
         const std::array<std::variant<int, float>, 2> vars = { 1, 2.0f };
         for (auto& v : vars) {
@@ -22,8 +17,8 @@ int main() {
     }
 
     {
-        struct x { void foo(); };
-        struct y { void foo(); };
+        struct x { void foo(){} };
+        struct y { void foo(){} };
 
         std::vector< std::variant<x, y> > vars;
         vars.push_back(x());
