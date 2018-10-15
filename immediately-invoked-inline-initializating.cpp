@@ -11,14 +11,14 @@ struct Foo {
 int main(int argc, char **argv) {
   weak_ptr<Foo> wp;
   /*
-          Bar bar;
+  Bar bar;
+  {
+      auto sp = wp.lock();
+      if (sp)
       {
-          auto sp = wp.lock();
-          if (sp)
-          {
-              bar = sp->bar;
-          }
+          bar = sp->bar;
       }
+  }
   */
   const Bar bar = [&]() {
     // P0305R1 aka if (init; condition)
