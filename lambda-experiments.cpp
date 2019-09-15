@@ -9,8 +9,9 @@ int main(int /*argc*/, char ** /*argv*/) {
   const int foo = [&] {
     if (baz) {
       return 1;
+    } else {
+      return 0;
     }
-    return 0;
   }();
 
   std::cout << "foo " << foo << std::endl;
